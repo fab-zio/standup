@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 var mongoose = require('mongoose');
 
 // Connect to mongoose
-mongoose.connect('mongodb://Fabrizio-sawa:sawaProject1@ds263740.mlab.com:63740/standup')
+mongoose.connect('mongodb://localhost:27017/standup', { useNewUrlParser: true })
 var app = express();
 
 // assign the swig view engin to .html files
