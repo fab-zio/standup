@@ -1,17 +1,30 @@
 var Standup = require('../models/standup.server.model');
 
 // select * from
-var query = Standup.find({ memberName: 'David' }, (err, result) => {
-    if (err) throw err;
-    console.log(result);
+// var query = Standup.find({ memberName: 'David' }, (err, result) => {
+//     if (err) throw err;
+//     console.log(result);
 
-})
-console.log('ecco', query);
+// })
 
 
+exports.filterByMember = function (req, res) {
+    let query = Standup.find();
+    let filter = req.body.memberName;
+
+    query.sort({ createdOn: 'desc' })
+    if (filter.length > 0) {
+        query.where({ memberName: filter })
+    }
+    query.exec(function (err, results) {
+        res.render('index', { title: "StandUp - List", notes: results })
+    })
+}
 
 exports.list = function (req, res) {
     let query = Standup.find()
+
+    console.log('ecco', query);
     query.sort({ createdOn: 'desc' }).limit(12).exec(function (err, results) {
         res.render('index', { title: 'StandUp-List', notes: results })
     })
