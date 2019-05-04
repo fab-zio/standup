@@ -41,9 +41,24 @@ exports.create = function (req, res) {
 
     });
 
-    entry.save();
+    //validate customed
+    // entry.schema.path('memberName').validate(function (value) {
+    //     return value != 'None';
+    // }, 'You must select a team member name.');
 
-    res.redirect(301, '/');
+    entry.save(function (err) {
+        if (err) {
+            let errMsg = 'Sorry,  there was an error saving the data' + err;
+            res.render('newnote', { title: 'Standup - New Note (error)', message: errMsg });
+        }
+        else {
+            console.log('Standup meeting note was saved');
+
+            res.redirect(301, '/');
+
+        }
+    });
+
 }
 
 exports.getNote = function (req, res) {
