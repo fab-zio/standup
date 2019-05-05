@@ -23,7 +23,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
                     <li class="active"><a href="/newnote">New Note</a></li>
-                    <li><a href="/discuss">Discuss</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -36,7 +35,11 @@
             <h1>New Virtual Stand-up Meeting Note</h1>
             <p class="lead">Use this form to enter your daily meeting notes...</p>
         </div>
-
+        {% if message.length >0 %}
+        <div class="alert alert-danger alert-error">
+            {{message}}
+        </div>
+        {% endif %}
         <form class="form-horizontal" action="newnote" method="post">
             <fieldset>
 

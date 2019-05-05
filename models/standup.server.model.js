@@ -1,14 +1,53 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
 
-var standupSchema = new Schema({
-    memberName: String,
-    project: String,
-    workYesterday: String,
-    workToday: String,
-    impediment: String,
-    createdOn: { type: Date, default: Date.now }
+const Schema = mongoose.Schema;
+
+const memberNameValidator = [
+    function (val) {
+        return (val.length > 0 && val.toLocaleLowerCase() != 'none')
+    },
+    'Select a valid member name'
+];
+const requireStringValidator = [
+    function (val) {
+        let testVal = val.trim();
+        return (testVal.length > 0)
+    },
+    '{PATH} cannot be empty'
+];
+const standupSchema = new Schema({
+    memberName: {
+        type: String,
+        required: true,
+        validate: memberNameValidator
+    },
+    project: {
+        type: String,
+        required: true,
+        validate: requireStringValidator
+    },
+    workYesterday: {
+        type: String,
+        required: true,
+        validate: requireStringValidator
+
+    },
+    workToday: {
+        type: String,
+        required: true,
+        validate: requireStringValidator
+
+    },
+    impediment: {
+        type: String,
+        required: true,
+        default: 'None',
+    },
+    createdOn: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 //mongoose create automatically ID,  but is possible to disable that..
