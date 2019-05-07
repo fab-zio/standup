@@ -10,7 +10,7 @@ using MongoDB, Node.js, Express, Swing, Boostrap
 
 1. Execute on your terminal: `npm install`;
 2. Run your local mongoDB `sudo service mongod start`; 
-3. Execute: `npm install`;
+3. Execute: `npm start`;
 3. Open [localhost:3000](http://localhost:3000/) on your browser;
 
 
