@@ -2,7 +2,7 @@
 
 **Create a simple Project management application**
 
-using MongoDB, Node.js, Express, Swing, Boostrap
+using MongoDB, Mongoose, Node.js, Express, Swing, Boostrap
 
 
 ### Installation 
